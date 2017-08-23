@@ -4,6 +4,7 @@
     "description": "Debug configuration extension for SharePoint Framework projects / developers. This allows you to automatically add the required debug configurations for Chrome to the launch.json file.",
     "version": "0.0.1",
     "publisher": "eliostruyf",
+    "icon": "assets/spfx-debug.png",
     "engines": {
         "vscode": "^1.15.0"
     },
@@ -21,8 +22,7 @@
         "Debugging"
     ],
     "categories": [
-        "Debuggers",
-        "Extension Packs"
+        "Debuggers"
     ],
     "extensionDependencies": [
         "msjsdiag.debugger-for-chrome"
