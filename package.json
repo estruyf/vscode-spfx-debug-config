@@ -1,0 +1,111 @@
+{
+    "name": "spfx-debug",
+    "displayName": "SPFx Debug Configuration",
+    "description": "Debug configuration extension for SharePoint Framework projects / developers. This allows you to automatically add the required debug configurations for Chrome to the launch.json file.",
+    "version": "0.0.1",
+    "publisher": "eliostruyf",
+    "engines": {
+        "vscode": "^1.15.0"
+    },
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/estruyf/vscode-spfx-debug-config.git"
+    },
+    "keywords": [
+        "SharePoint",
+        "Framework",
+        "SPFx",
+        "TypeScript",
+        "React",
+        "Debugging"
+    ],
+    "categories": [
+        "Debuggers",
+        "Extension Packs"
+    ],
+    "extensionDependencies": [
+        "msjsdiag.debugger-for-chrome"
+    ],
+    "contributes": {
+        "debuggers": [{
+            "type": "SPFx",
+            "label": "SPFx Debugging",
+            "runtime": "node",
+            "initialConfigurations": [{
+                    "name": "Local workbench",
+                    "type": "chrome",
+                    "request": "launch",
+                    "url": "https://localhost:4321/temp/workbench.html",
+                    "webRoot": "${workspaceRoot}",
+                    "sourceMaps": true,
+                    "sourceMapPathOverrides": {
+                        "webpack:///../../../src/*": "${webRoot}/src/*",
+                        "webpack:///../../../../src/*": "${webRoot}/src/*",
+                        "webpack:///../../../../../src/*": "${webRoot}/src/*"
+                    },
+                    "runtimeArgs": [
+                        "--remote-debugging-port=9222"
+                    ]
+                },
+                {
+                    "name": "Hosted workbench",
+                    "type": "chrome",
+                    "request": "launch",
+                    "url": "https://contoso.sharepoint.com/_layouts/workbench.aspx",
+                    "webRoot": "${workspaceRoot}",
+                    "sourceMaps": true,
+                    "sourceMapPathOverrides": {
+                        "webpack:///../../../src/*": "${webRoot}/src/*",
+                        "webpack:///../../../../src/*": "${webRoot}/src/*",
+                        "webpack:///../../../../../src/*": "${webRoot}/src/*"
+                    },
+                    "runtimeArgs": [
+                        "--remote-debugging-port=9222"
+                    ]
+                }
+            ],
+            "configurationSnippets": [{
+                    "label": "SPFx: Local workbench",
+                    "description": "Launch Chrome and open the local workbench",
+                    "body": {
+                        "name": "Local workbench",
+                        "type": "chrome",
+                        "request": "launch",
+                        "url": "https://localhost:4321/temp/workbench.html",
+                        "webRoot": "${workspaceRoot}",
+                        "sourceMaps": true,
+                        "sourceMapPathOverrides": {
+                            "webpack:///../../../src/*": "${webRoot}/src/*",
+                            "webpack:///../../../../src/*": "${webRoot}/src/*",
+                            "webpack:///../../../../../src/*": "${webRoot}/src/*"
+                        },
+                        "runtimeArgs": [
+                            "--remote-debugging-port=9222"
+                        ]
+                    }
+                },
+                {
+                    "label": "SPFx: Hosted workbench",
+                    "description": "Launch Chrome and open the hosted workbench",
+                    "body": {
+                        "name": "Hosted workbench",
+                        "type": "chrome",
+                        "request": "launch",
+                        "url": "https://${1:contoso}.sharepoint.com${2:/}_layouts/workbench.aspx",
+                        "webRoot": "${workspaceRoot}",
+                        "sourceMaps": true,
+                        "sourceMapPathOverrides": {
+                            "webpack:///../../../src/*": "${webRoot}/src/*",
+                            "webpack:///../../../../src/*": "${webRoot}/src/*",
+                            "webpack:///../../../../../src/*": "${webRoot}/src/*"
+                        },
+                        "runtimeArgs": [
+                            "--remote-debugging-port=9222"
+                        ]
+                    }
+                }
+            ]
+        }]
+    }
+}

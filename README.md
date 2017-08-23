@@ -1,0 +1,1 @@
+# SharePoint Framework - Visual Studio Code Debug Configuration Extension
