@@ -16,6 +16,15 @@ When you already have configured something in the `launch.json` file, you can al
 
 ![SPFx debugging configurations](./assets/spfx-debug-configurations.png)
 
+Since version `0.0.2`, the plugin supports SPFx extensions. The following snippets are available:
+- SPFx: Local workbench
+- SPFx: Hosted workbench
+- SPFx: ApplicationCustomizer debug
+- SPFx: FieldCustomizer debug
+- SPFx: ListViewCommandSet debug
+
+> **Info**: When no `launch.json` file is present, the moment you create a new configuration, the plugin will automatically check the SPFx extensions and do the right configuration for them.
+
 ## Changes
 
 You can check the [change log](./CHANGELOG.md) to get an overview of all the changes made to this extension.
