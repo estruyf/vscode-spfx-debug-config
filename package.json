@@ -1,158 +1,158 @@
 {
-    "name": "spfx-debug",
-    "displayName": "SPFx Debug Configuration",
-    "description": "Debug configuration extension for SharePoint Framework projects / developers. This allows you to automatically add the required debug configurations for Chrome to the launch.json file.",
-    "version": "0.0.2",
-    "publisher": "eliostruyf",
-    "icon": "assets/spfx-debug.png",
-    "engines": {
-        "vscode": "^1.15.0"
-    },
-    "license": "MIT",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/estruyf/vscode-spfx-debug-config.git"
-    },
-    "keywords": [
-        "SharePoint",
-        "SPFx",
-        "TypeScript",
-        "React",
-        "Debugging"
-    ],
-    "categories": [
-        "Debuggers"
-    ],
-    "extensionDependencies": [
-        "msjsdiag.debugger-for-chrome"
-    ],
-    "main": "./out/checkConfig",
-    "activationEvents": [
-        "onCommand:extension.spfx-debug.provideInitialConfigurations"
-    ],
-    "contributes": {
-        "debuggers": [{
-            "type": "SPFx",
-            "label": "SPFx Debugging",
-            "runtime": "node",
-            "initialConfigurations": "extension.spfx-debug.provideInitialConfigurations",
-            "configurationSnippets": [{
-                    "label": "SPFx: Local workbench",
-                    "description": "Launch Chrome and open the local workbench",
-                    "body": {
-                        "name": "Local workbench",
-                        "type": "chrome",
-                        "request": "launch",
-                        "url": "https://localhost:4321/temp/workbench.html",
-                        "webRoot": "${workspaceRoot}",
-                        "sourceMaps": true,
-                        "sourceMapPathOverrides": {
-                            "webpack:///../../../src/*": "${webRoot}/src/*",
-                            "webpack:///../../../../src/*": "${webRoot}/src/*",
-                            "webpack:///../../../../../src/*": "${webRoot}/src/*"
-                        },
-                        "runtimeArgs": [
-                            "--remote-debugging-port=9222"
-                        ]
-                    }
-                },
-                {
-                    "label": "SPFx: Hosted workbench",
-                    "description": "Launch Chrome and open the hosted workbench",
-                    "body": {
-                        "name": "Hosted workbench",
-                        "type": "chrome",
-                        "request": "launch",
-                        "url": "https://${1:contoso}.sharepoint.com${2:/}",
-                        "webRoot": "${workspaceRoot}",
-                        "sourceMaps": true,
-                        "sourceMapPathOverrides": {
-                            "webpack:///../../../src/*": "${webRoot}/src/*",
-                            "webpack:///../../../../src/*": "${webRoot}/src/*",
-                            "webpack:///../../../../../src/*": "${webRoot}/src/*"
-                        },
-                        "runtimeArgs": [
-                            "--remote-debugging-port=9222"
-                        ]
-                    }
-                },
-                {
-                    "label": "SPFx: ApplicationCustomizer debug",
-                    "description": "Launch Chrome and open the document library to debug your extension",
-                    "body": {
-                        "name": "ApplicationCustomizer debug",
-                        "type": "chrome",
-                        "request": "launch",
-                        "url": "https://${1:contoso}.sharepoint.com/${2:documents}?loadSPFX=true&debugManifestsFile=https://localhost:4321/temp/manifests.js&customActions={\"${3:00000000-0000-0000-0000-000000000000}\":{\"location\":\"ClientSideExtension.ApplicationCustomizer\",\"properties\":{\"prop1\":\"val1\"}}}",
-                        "webRoot": "${workspaceRoot}",
-                        "sourceMaps": true,
-                        "sourceMapPathOverrides": {
-                            "webpack:///../../../src/*": "${webRoot}/src/*",
-                            "webpack:///../../../../src/*": "${webRoot}/src/*",
-                            "webpack:///../../../../../src/*": "${webRoot}/src/*"
-                        },
-                        "runtimeArgs": [
-                            "--remote-debugging-port=9222"
-                        ]
-                    }
-                },
-                {
-                    "label": "SPFx: FieldCustomizer debug",
-                    "description": "Launch Chrome and open the document library to debug your extension",
-                    "body": {
-                        "name": "FieldCustomizer debug",
-                        "type": "chrome",
-                        "request": "launch",
-                        "url": "https://${1:contoso}.sharepoint.com/${2:documents}?loadSPFX=true&debugManifestsFile=https://localhost:4321/temp/manifests.js&fieldCustomizers={\"FieldName\":{\"id\":\"${3:00000000-0000-0000-0000-000000000000}\",\"properties\":{\"prop1\":\"val1\"}}}",
-                        "webRoot": "${workspaceRoot}",
-                        "sourceMaps": true,
-                        "sourceMapPathOverrides": {
-                            "webpack:///../../../src/*": "${webRoot}/src/*",
-                            "webpack:///../../../../src/*": "${webRoot}/src/*",
-                            "webpack:///../../../../../src/*": "${webRoot}/src/*"
-                        },
-                        "runtimeArgs": [
-                            "--remote-debugging-port=9222"
-                        ]
-                    }
-                },
-                {
-                    "label": "SPFx: ListViewCommandSet debug",
-                    "description": "Launch Chrome and open the document library to debug your extension",
-                    "body": {
-                        "name": "ListViewCommandSet debug",
-                        "type": "chrome",
-                        "request": "launch",
-                        "url": "https://${1:contoso}.sharepoint.com/${2:documents}?loadSPFX=true&debugManifestsFile=https://localhost:4321/temp/manifests.js&customActions={\"${3:00000000-0000-0000-0000-000000000000}\":{\"location\":\"ClientSideExtension.ListViewCommandSet.CommandBar\"}}",
-                        "webRoot": "${workspaceRoot}",
-                        "sourceMaps": true,
-                        "sourceMapPathOverrides": {
-                            "webpack:///../../../src/*": "${webRoot}/src/*",
-                            "webpack:///../../../../src/*": "${webRoot}/src/*",
-                            "webpack:///../../../../../src/*": "${webRoot}/src/*"
-                        },
-                        "runtimeArgs": [
-                            "--remote-debugging-port=9222"
-                        ]
-                    }
-                }
-            ]
-        }]
-    },
-    "scripts": {
-        "vscode:prepublish": "tsc -p ./",
-        "compile": "tsc -watch -p ./",
-        "postinstall": "node ./node_modules/vscode/bin/install",
-        "test": "node ./node_modules/vscode/bin/test"
-    },
-    "devDependencies": {
-        "typescript": "^2.0.3",
-        "vscode": "^1.0.0",
-        "mocha": "^2.3.3",
-        "@types/node": "^6.0.40",
-        "@types/mocha": "^2.2.32"
-    },
-    "dependencies": {
-        "decomment": "0.9.0"
-    }
+  "name": "spfx-debug",
+  "displayName": "SPFx Debug Configuration",
+  "description": "Debug configuration extension for SharePoint Framework projects / developers. This allows you to automatically add the required debug configurations for Chrome to the launch.json file.",
+  "version": "0.0.3",
+  "publisher": "eliostruyf",
+  "icon": "assets/spfx-debug.png",
+  "engines": {
+    "vscode": "^1.17.0"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/estruyf/vscode-spfx-debug-config.git"
+  },
+  "keywords": [
+    "SharePoint",
+    "SPFx",
+    "TypeScript",
+    "React",
+    "Debugging"
+  ],
+  "categories": [
+    "Debuggers"
+  ],
+  "extensionDependencies": [
+    "msjsdiag.debugger-for-chrome"
+  ],
+  "main": "./out/checkConfig",
+  "activationEvents": ["onDebug"],
+  "contributes": {
+    "debuggers": [
+      {
+        "type": "SPFx",
+        "label": "SPFx Debugging",
+        "runtime": "node",
+        "configurationSnippets": [
+          {
+            "label": "SPFx: Local workbench",
+            "description": "Launch Chrome and open the local workbench",
+            "body": {
+              "name": "Local workbench",
+              "type": "chrome",
+              "request": "launch",
+              "url": "https://localhost:4321/temp/workbench.html",
+              "webRoot": "${workspaceRoot}",
+              "sourceMaps": true,
+              "sourceMapPathOverrides": {
+                "webpack:///../../../src/*": "${webRoot}/src/*",
+                "webpack:///../../../../src/*": "${webRoot}/src/*",
+                "webpack:///../../../../../src/*": "${webRoot}/src/*"
+              },
+              "runtimeArgs": [
+                "--remote-debugging-port=9222"
+              ]
+            }
+          },
+          {
+            "label": "SPFx: Hosted workbench",
+            "description": "Launch Chrome and open the hosted workbench",
+            "body": {
+              "name": "Hosted workbench",
+              "type": "chrome",
+              "request": "launch",
+              "url": "https://${1:contoso}.sharepoint.com${2:/}",
+              "webRoot": "${workspaceRoot}",
+              "sourceMaps": true,
+              "sourceMapPathOverrides": {
+                "webpack:///../../../src/*": "${webRoot}/src/*",
+                "webpack:///../../../../src/*": "${webRoot}/src/*",
+                "webpack:///../../../../../src/*": "${webRoot}/src/*"
+              },
+              "runtimeArgs": [
+                "--remote-debugging-port=9222"
+              ]
+            }
+          },
+          {
+              "label": "SPFx: ApplicationCustomizer debug",
+              "description": "Launch Chrome and open the document library to debug your extension",
+              "body": {
+                  "name": "ApplicationCustomizer debug",
+                  "type": "chrome",
+                  "request": "launch",
+                  "url": "https://${1:contoso}.sharepoint.com/${2:documents}?loadSPFX=true&debugManifestsFile=https://localhost:4321/temp/manifests.js&customActions={\"${3:00000000-0000-0000-0000-000000000000}\":{\"location\":\"ClientSideExtension.ApplicationCustomizer\",\"properties\":{\"prop1\":\"val1\"}}}",
+                  "webRoot": "${workspaceRoot}",
+                  "sourceMaps": true,
+                  "sourceMapPathOverrides": {
+                      "webpack:///../../../src/*": "${webRoot}/src/*",
+                      "webpack:///../../../../src/*": "${webRoot}/src/*",
+                      "webpack:///../../../../../src/*": "${webRoot}/src/*"
+                  },
+                  "runtimeArgs": [
+                      "--remote-debugging-port=9222"
+                  ]
+              }
+          },
+          {
+              "label": "SPFx: FieldCustomizer debug",
+              "description": "Launch Chrome and open the document library to debug your extension",
+              "body": {
+                  "name": "FieldCustomizer debug",
+                  "type": "chrome",
+                  "request": "launch",
+                  "url": "https://${1:contoso}.sharepoint.com/${2:documents}?loadSPFX=true&debugManifestsFile=https://localhost:4321/temp/manifests.js&fieldCustomizers={\"FieldName\":{\"id\":\"${3:00000000-0000-0000-0000-000000000000}\",\"properties\":{\"prop1\":\"val1\"}}}",
+                  "webRoot": "${workspaceRoot}",
+                  "sourceMaps": true,
+                  "sourceMapPathOverrides": {
+                      "webpack:///../../../src/*": "${webRoot}/src/*",
+                      "webpack:///../../../../src/*": "${webRoot}/src/*",
+                      "webpack:///../../../../../src/*": "${webRoot}/src/*"
+                  },
+                  "runtimeArgs": [
+                      "--remote-debugging-port=9222"
+                  ]
+              }
+          },
+          {
+              "label": "SPFx: ListViewCommandSet debug",
+              "description": "Launch Chrome and open the document library to debug your extension",
+              "body": {
+                  "name": "ListViewCommandSet debug",
+                  "type": "chrome",
+                  "request": "launch",
+                  "url": "https://${1:contoso}.sharepoint.com/${2:documents}?loadSPFX=true&debugManifestsFile=https://localhost:4321/temp/manifests.js&customActions={\"${3:00000000-0000-0000-0000-000000000000}\":{\"location\":\"ClientSideExtension.ListViewCommandSet.CommandBar\"}}",
+                  "webRoot": "${workspaceRoot}",
+                  "sourceMaps": true,
+                  "sourceMapPathOverrides": {
+                      "webpack:///../../../src/*": "${webRoot}/src/*",
+                      "webpack:///../../../../src/*": "${webRoot}/src/*",
+                      "webpack:///../../../../../src/*": "${webRoot}/src/*"
+                  },
+                  "runtimeArgs": [
+                      "--remote-debugging-port=9222"
+                  ]
+              }
+          }
+        ]
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "tsc -p ./",
+    "compile": "tsc -watch -p ./",
+    "postinstall": "node ./node_modules/vscode/bin/install",
+    "test": "node ./node_modules/vscode/bin/test"
+  },
+  "devDependencies": {
+    "@types/mocha": "2.2.32",
+    "@types/node": "6.0.40",
+    "mocha": "2.3.3",
+    "typescript": "2.5.2",
+    "vscode": "1.1.6"
+  },
+  "dependencies": {
+    "decomment": "0.9.0"
+  }
 }
